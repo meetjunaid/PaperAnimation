@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 — 2026-10-14
+
+- Fix: Claude.ai rejected the upload because the skill description contained `<phrase>`, which it reads as an XML tag.
+
 ## 1.1.0 — 2026-10-14
 
 - Works on **Claude.ai** and **ChatGPT**: the skill runs in the chat's own sandbox and hands you both videos to download.

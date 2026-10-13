@@ -1,10 +1,10 @@
 ---
 name: newspaper-highlight-animation
-description: Make a 3-second "newspaper highlight" hook video, a stop-motion flip through 23 newspaper, magazine and web-article pages where one word or phrase is highlighted in yellow marker and pinned to the centre of the frame. Renders 4K 60 fps in both vertical reel (2160x3840) and YouTube landscape (3840x2160) at once, with an optional projector sound. Use when the user asks for a newspaper highlight video, paper animation hook, highlighted-word intro, news-clipping montage, or "the highlight video for <phrase>".
+description: Make a 3-second "newspaper highlight" hook video, a stop-motion flip through 23 newspaper, magazine and web-article pages where one word or phrase is highlighted in yellow marker and pinned to the centre of the frame. Renders 4K 60 fps in both vertical reel (2160x3840) and YouTube landscape (3840x2160) at once, with an optional projector sound. Use when the user asks for a newspaper highlight video, paper animation hook, highlighted-word intro, news-clipping montage, or a highlight video for a word or phrase.
 license: MIT
 compatibility: macOS, Windows or Linux with Python 3.11+, including the Claude.ai and ChatGPT code sandboxes. The first run installs about 250 MB of Python packages. Minimal Linux installs also need the system GL libraries (libegl1, libgl1).
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Newspaper highlight animation
