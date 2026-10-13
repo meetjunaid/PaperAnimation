@@ -4,7 +4,7 @@ description: Make a 3-second "newspaper highlight" hook video, a stop-motion fli
 license: MIT
 compatibility: macOS, Windows or Linux with Python 3.11+, including the Claude.ai and ChatGPT code sandboxes. The first run installs about 250 MB of Python packages. Minimal Linux installs also need the system GL libraries (libegl1, libgl1).
 metadata:
-  version: "2.0.0"
+  version: "2.0.1"
 ---
 
 # PaperAnimation
@@ -18,7 +18,7 @@ highlighted phrase changes.
 
    > **What word or phrase should be highlighted?**
    > It's printed exactly as you type it, so check the capital letters, spelling
-   > and spacing. For example: *AI*, *Open Source* or *Agar Tum Saat Ho*.
+   > and spacing. For example: *AI*, *Open Source* or *Junaid*.
 
    Wait for the answer, and use it exactly as typed. Ask even if you think you
    know it.

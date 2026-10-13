@@ -1,9 +1,14 @@
 # Changelog
 
+## 2.0.1 — 2026-10-14
+
+- The phrase question's examples are now *AI*, *Open Source* and *Junaid*.
+- Bundled fallback fonts renamed to PA Baskerville, PA Didone and PA Serif. Renders are unchanged.
+
 ## 2.0.0 — 2026-10-14
 
 - Renamed to **PaperAnimation**. The repository is now `meetjunaid/PaperAnimation`, and the skill and plugin are `paper-animation`.
-  - Claude Code: remove the old marketplace with `claude plugin marketplace remove newspaper-highlight-animation`, then install with the new commands in the README.
+  - Claude Code: remove the old marketplace under `/plugin` → Marketplaces, then install with the new commands in the README.
   - Claude.ai and ChatGPT: delete the old skill and upload the new ZIP.
 - The phrase question now explains that the phrase is printed exactly as typed, including capitals.
 
@@ -32,7 +37,7 @@
 
 First public release.
 
-- 3-second newspaper highlight animation: 23 printed and web pages, with the phrase pinned to the centre of the frame.
+- 3-second newspaper highlight video: 23 printed and web pages, with the phrase pinned to the centre of the frame.
 - Exports 4K 60 fps in both orientations at once: reel 2160x3840 and YouTube 3840x2160.
 - Runs on macOS, Windows and Linux. On a Mac it uses the original macOS typefaces; elsewhere it uses bundled open-licensed lookalikes.
 - Uses Apple's hardware encoder on macOS (about 2 minutes for both videos on Apple Silicon) and x264 everywhere else.

@@ -1,7 +1,7 @@
 {
   "name": "paper-animation",
   "displayName": "PaperAnimation",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Turn any word into a 3-second newspaper highlight hook: 23 newspaper, magazine and web pages flip by with your word highlighted in yellow, dead-centre. Exports 4K 60 fps, reel and YouTube at once. macOS, Windows and Linux.",
   "author": {
     "name": "Junaid Ahmed",

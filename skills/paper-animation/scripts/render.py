@@ -24,9 +24,9 @@ FM = skia.FontMgr.RefDefault()
 # and Linux. macOS has every design font, so there the bundled ones are never used.
 BUNDLED = skia.FontMgr.New_Custom_Directory(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "assets", "fonts"))
 FALLBACK = {
-    "Times New Roman": "Tinos", "Georgia": "Gelasio", "Baskerville": "NHA Baskerville", "Charter": "NHA Serif",
-    "Hoefler Text": "Libre Caslon Text", "PT Serif": "NHA Serif", "Iowan Old Style": "NHA Serif", "Palatino": "Gelasio",
-    "Cochin": "Libre Caslon Text", "Bodoni 72": "Bodoni Moda", "Didot": "NHA Didone", "Big Caslon": "Libre Caslon Text",
+    "Times New Roman": "Tinos", "Georgia": "Gelasio", "Baskerville": "PA Baskerville", "Charter": "PA Serif",
+    "Hoefler Text": "Libre Caslon Text", "PT Serif": "PA Serif", "Iowan Old Style": "PA Serif", "Palatino": "Gelasio",
+    "Cochin": "Libre Caslon Text", "Bodoni 72": "Bodoni Moda", "Didot": "PA Didone", "Big Caslon": "Libre Caslon Text",
     "Futura": "Jost", "Avenir Next": "Jost", "Gill Sans": "Jost", "Helvetica Neue": "Arimo", "Arial": "Arimo",
     "Verdana": "Arimo", "American Typewriter": "Courier Prime", "Courier New": "Courier Prime", "Impact": "Anton",
     "Arial Black": "Archivo Black", "DIN Condensed": "Oswald", "Avenir Next Condensed": "Oswald",
