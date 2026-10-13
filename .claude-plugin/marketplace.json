@@ -1,0 +1,14 @@
+{
+  "name": "newspaper-highlight-animation",
+  "description": "The newspaper highlight animation skill",
+  "owner": {
+    "name": "Junaid Ahmed"
+  },
+  "plugins": [
+    {
+      "name": "newspaper-highlight-animation",
+      "source": "./",
+      "description": "3-second newspaper highlight hook video, exported in 4K 60 fps, reel and YouTube at once. macOS, Windows and Linux."
+    }
+  ]
+}
