@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0 — 2026-10-14
+
+- Renamed to **PaperAnimation**. The repository is now `meetjunaid/PaperAnimation`, and the skill and plugin are `paper-animation`.
+  - Claude Code: remove the old marketplace with `claude plugin marketplace remove newspaper-highlight-animation`, then install with the new commands in the README.
+  - Claude.ai and ChatGPT: delete the old skill and upload the new ZIP.
+- The phrase question now explains that the phrase is printed exactly as typed, including capitals.
+
 ## 1.1.3 — 2026-10-14
 
 - The phrase question is back in the chat. Only the sound question uses the pop-up, now worded "Do you want sound effects in your video?" with **Yes (Recommended)** first.

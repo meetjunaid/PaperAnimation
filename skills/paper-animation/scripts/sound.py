@@ -4,7 +4,7 @@ Pure numpy, so there is no sample to license.
 
 Tweak the knobs below, then preview without rendering any video:
 
-    ~/.cache/newspaper-highlight-animation/venv-*/bin/python sound.py preview.wav && afplay preview.wav
+    ~/.cache/paper-animation/venv-*/bin/python sound.py preview.wav && afplay preview.wav
 """
 import math
 import sys

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """usage: python3 make.py "<phrase>" [out_dir] [--sound] [--web] [--only reel|youtube]
 
-Renders the 3.0 s newspaper highlight animation in 4K at 60 fps, reel and
+Renders the 3.0 s PaperAnimation newspaper highlight video in 4K at 60 fps, reel and
 YouTube orientations, then checks the files. Works on macOS, Windows and Linux
 with Python 3.11+.
 
@@ -43,7 +43,7 @@ def env_python():
     install into the current Python instead."""
     req = HERE / "requirements.txt"
     base = Path(os.environ.get("LOCALAPPDATA") or os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache")
-    env_dir = base / "newspaper-highlight-animation" / ("venv-" + hashlib.sha1(req.read_bytes()).hexdigest()[:8])
+    env_dir = base / "paper-animation" / ("venv-" + hashlib.sha1(req.read_bytes()).hexdigest()[:8])
     py = env_dir / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
     if py.exists():
         return str(py)
@@ -108,7 +108,7 @@ def main():
     if not args or not args[0].strip():
         sys.exit(__doc__)
     phrase = args[0]
-    out = Path(args[1]).expanduser() if len(args) > 1 else Path.home() / "Downloads" / "newspaper-highlight-animation"
+    out = Path(args[1]).expanduser() if len(args) > 1 else Path.home() / "Downloads" / "paper-animation"
     py = env_python()
     check_imports(py)
 
@@ -129,7 +129,7 @@ def main():
         sys.exit("error: rendering failed")
 
     # Self-check: size, fps, frame count, duration, sound, plus a contact sheet per video to look at.
-    sheets = Path(tempfile.gettempdir()) / "newspaper-highlight-animation"
+    sheets = Path(tempfile.gettempdir()) / "paper-animation"
     sheets.mkdir(exist_ok=True)
     for name, _, _ in jobs:
         subprocess.run([py, str(HERE / "check_video.py"), str(files[name]), str(sheets / f"{slug}_{name}_cards.png")],

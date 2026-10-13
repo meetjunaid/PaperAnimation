@@ -1,21 +1,27 @@
 ---
-name: newspaper-highlight-animation
+name: paper-animation
 description: Make a 3-second "newspaper highlight" hook video, a stop-motion flip through 23 newspaper, magazine and web-article pages where one word or phrase is highlighted in yellow marker and pinned to the centre of the frame. Renders 4K 60 fps in both vertical reel (2160x3840) and YouTube landscape (3840x2160) at once, with an optional projector sound. Use when the user asks for a newspaper highlight video, paper animation hook, highlighted-word intro, news-clipping montage, or a highlight video for a word or phrase.
 license: MIT
 compatibility: macOS, Windows or Linux with Python 3.11+, including the Claude.ai and ChatGPT code sandboxes. The first run installs about 250 MB of Python packages. Minimal Linux installs also need the system GL libraries (libegl1, libgl1).
 metadata:
-  version: "1.1.3"
+  version: "2.0.0"
 ---
 
-# Newspaper highlight animation
+# PaperAnimation
 
 A locked, reusable design. Do NOT redesign it, restyle it or add motion. Only the
 highlighted phrase changes.
 
 ## 1. Ask two questions, one at a time
 
-1. Ask: **"What word or phrase should be highlighted?"** Wait for the answer. Use
-   the user's exact spelling and capitalisation. Ask even if you think you know it.
+1. Ask in the chat, in these words:
+
+   > **What word or phrase should be highlighted?**
+   > It's printed exactly as you type it, so check the capital letters, spelling
+   > and spacing. For example: *AI*, *Open Source* or *Agar Tum Saat Ho*.
+
+   Wait for the answer, and use it exactly as typed. Ask even if you think you
+   know it.
 2. Then ask: **"Do you want sound effects in your video?"** as a multiple-choice question
    with two options, using your structured question tool if you have one (in
    Claude Code, AskUserQuestion):
@@ -42,7 +48,7 @@ Add `--sound` only if the user answered Yes.
   minutes, about 5–10 depending on the machine.
 - Give the command a timeout of at least 20 minutes, because the first run also
   installs the dependencies.
-- The default output folder is `~/Downloads/newspaper-highlight-animation/`.
+- The default output folder is `~/Downloads/paper-animation/`.
 - It writes `<slug>_reel_2160x3840_60fps.mp4` and
   `<slug>_youtube_3840x2160_60fps.mp4`.
 - The first run creates a Python environment in the user's cache folder. If it

@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📰 Newspaper Highlight Animation
+# 📰 PaperAnimation
 
 ### Turn any word into a 3-second newspaper hook, exported in **4K at 60 fps**.
 
@@ -26,7 +26,7 @@ Reel and YouTube versions, rendered at once.
 
 ## ⬇️ Get it in 2 minutes. No GitHub needed.
 
-<a href="https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip"><img src="media/download-button.svg" width="440" alt="Download the skill: free 3 MB ZIP for Claude and ChatGPT"></a>
+<a href="https://github.com/meetjunaid/PaperAnimation/releases/latest/download/paper-animation.zip"><img src="media/download-button.svg" width="440" alt="Download the skill: free 3 MB ZIP for Claude and ChatGPT"></a>
 
 <sub>One click, and the ZIP lands in your Downloads folder. Keep it zipped.</sub>
 
@@ -57,7 +57,7 @@ newsprint fibres, creases, ink bleed, marker streaks and film grain.
 
 Works on every plan, including Free, in the browser and the desktop app.
 
-1. **[Download the skill](https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip)**. Keep it as a ZIP; don't unzip it.
+1. **[Download the skill](https://github.com/meetjunaid/PaperAnimation/releases/latest/download/paper-animation.zip)**. Keep it as a ZIP; don't unzip it.
 2. In Claude, open **Settings → Capabilities** and turn on **Code execution and file creation**.
 3. Open **Customize → Skills**, click **+**, then **Create skill → Upload a skill**, and choose the ZIP.
 4. Start a new chat and type: **make the newspaper highlight video**
@@ -71,18 +71,18 @@ Claude asks for your word and whether you want sound, then hands you both 4K vid
 
 Skills are in beta on ChatGPT, so menus can move around and availability depends on your plan.
 
-1. **[Download the skill](https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip)**. Keep it as a ZIP.
+1. **[Download the skill](https://github.com/meetjunaid/PaperAnimation/releases/latest/download/paper-animation.zip)**. Keep it as a ZIP.
 2. In ChatGPT, open **Skills**, click **Create**, then **Upload from your computer**, and choose the ZIP.
-3. In a new chat, type **@newspaper-highlight-animation** or just ask for **the newspaper highlight video**.
+3. In a new chat, type **@paper-animation** or just ask for **the newspaper highlight video**.
 
 ## 💻 In Claude Code
 
 ```text
-/plugin marketplace add meetjunaid/newspaper-highlight-animation
-/plugin install newspaper-highlight-animation@newspaper-highlight-animation
+/plugin marketplace add meetjunaid/PaperAnimation
+/plugin install paper-animation@paper-animation
 ```
 
-Update later with `claude plugin update newspaper-highlight-animation@newspaper-highlight-animation`.
+Update later with `claude plugin update paper-animation@paper-animation`.
 
 <details>
 <summary><b>Codex, Cursor and other coding agents</b></summary>
@@ -90,16 +90,16 @@ Update later with `claude plugin update newspaper-highlight-animation@newspaper-
 <br>
 
 ```sh
-npx skills add meetjunaid/newspaper-highlight-animation
+npx skills add meetjunaid/PaperAnimation
 ```
 
 or, with the GitHub CLI (v2.90+):
 
 ```sh
-gh skill install meetjunaid/newspaper-highlight-animation newspaper-highlight-animation
+gh skill install meetjunaid/PaperAnimation paper-animation
 ```
 
-Or unzip the [ZIP](https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip) into the folder where your agent looks for skills.
+Or unzip the [ZIP](https://github.com/meetjunaid/PaperAnimation/releases/latest/download/paper-animation.zip) into the folder where your agent looks for skills.
 
 </details>
 
@@ -113,7 +113,7 @@ Ask your agent for it in plain words:
 
 It asks you two quick questions, **what word to highlight** and **whether you want sound effects**
 (yes or no), then renders both videos. On your computer they land in
-`~/Downloads/newspaper-highlight-animation/`; on Claude.ai and ChatGPT you download them from the chat.
+`~/Downloads/paper-animation/`; on Claude.ai and ChatGPT you download them from the chat.
 
 <details>
 <summary><b>Prefer the terminal?</b></summary>
@@ -121,7 +121,7 @@ It asks you two quick questions, **what word to highlight** and **whether you wa
 <br>
 
 ```sh
-python3 skills/newspaper-highlight-animation/scripts/make.py "Your Phrase" [output_dir] [--sound]
+python3 skills/paper-animation/scripts/make.py "Your Phrase" [output_dir] [--sound]
 ```
 
 On Windows, use `py` instead of `python3`.
@@ -167,7 +167,7 @@ bundled open-licensed lookalikes, so the type differs only slightly.
 <br>
 
 Yes. Speed, loudness, tone, click length and hiss are all at the top of
-[`scripts/sound.py`](skills/newspaper-highlight-animation/scripts/sound.py).
+[`scripts/sound.py`](skills/paper-animation/scripts/sound.py).
 
 </details>
 
@@ -187,13 +187,15 @@ Yes. The pages are seeded from your phrase. Only the film grain is fresh on ever
 
 Fork it and edit `scripts/render.py` (the pages) and `scripts/copy_text.py` (all the
 fictional news). The full design spec is in
-[`references/look.md`](skills/newspaper-highlight-animation/references/look.md).
+[`references/look.md`](skills/paper-animation/references/look.md).
 
 </details>
 
 ## 📜 License
 
+PaperAnimation is an independent open-source project. It is not affiliated with, or endorsed by, paperanimation.ai.
+
 [MIT](LICENSE) © 2026 Junaid Ahmed. Bundled fonts are under the SIL Open Font License; see
-[`assets/fonts`](skills/newspaper-highlight-animation/assets/fonts/).
+[`assets/fonts`](skills/paper-animation/assets/fonts/).
 
 <div align="center"><sub>⭐ Star the repo if it made your next video pop.</sub></div>

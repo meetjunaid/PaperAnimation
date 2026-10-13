@@ -1,4 +1,4 @@
-"""Newspaper highlight animation renderer.
+"""PaperAnimation renderer: the newspaper highlight video.
 
 usage: render.py "<phrase>" <W> <H> <FPS> <out.mp4> [--cards-dir DIR] [--sound] [--web]
 Each card is a different printed/online page with the phrase highlighted and
@@ -31,7 +31,7 @@ FALLBACK = {
     "Verdana": "Arimo", "American Typewriter": "Courier Prime", "Courier New": "Courier Prime", "Impact": "Anton",
     "Arial Black": "Archivo Black", "DIN Condensed": "Oswald", "Avenir Next Condensed": "Oswald",
 }
-FORCE_BUNDLED = os.environ.get("NHA_BUNDLED_FONTS") == "1"  # preview the Windows/Linux look on a Mac
+FORCE_BUNDLED = os.environ.get("PAPER_ANIMATION_BUNDLED_FONTS") == "1"  # preview the Windows/Linux look on a Mac
 _tf = {}
 
 
