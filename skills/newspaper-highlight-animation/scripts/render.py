@@ -1,6 +1,6 @@
 """Newspaper highlight animation renderer.
 
-usage: render.py "<phrase>" <W> <H> <FPS> <out.mp4> [--cards-dir DIR] [--sound]
+usage: render.py "<phrase>" <W> <H> <FPS> <out.mp4> [--cards-dir DIR] [--sound] [--web]
 Each card is a different printed/online page with the phrase highlighted and
 pinned to the exact centre of the frame; 23 cards step at 8 cards/s (each card
 0.125 s, the last held 0.25 s) = exactly 3.0 s at any frame rate.
@@ -15,6 +15,7 @@ from copy_text import *
 KW, PW, PH, FPS, OUT = sys.argv[1], int(sys.argv[2]), int(sys.argv[3]), int(sys.argv[4]), sys.argv[5]
 CARDS_DIR = sys.argv[sys.argv.index("--cards-dir") + 1] if "--cards-dir" in sys.argv else None
 SOUND = "--sound" in sys.argv  # projector rattle under the whole video (sound.py)
+WEB = "--web" in sys.argv  # cap the file at about 24 MB for web apps' 30 MB download limit
 CARD_T, LAST_T = 0.125, 0.25
 S = min(PW, PH) / 1080  # output pixels per layout unit
 W, H = round(PW / S), round(PH / S)  # layout canvas; every size below is in these units
@@ -608,7 +609,10 @@ def to_yuv709(rgb):
 
 def encoder(ff):
     """Apple's hardware H.264 encoder when it can run constant-quality mode (about 10x faster at 4K and
-    slightly higher PSNR than x264 here), otherwise x264."""
+    slightly higher PSNR than x264 here), otherwise x264. Web mode is a fixed 60 Mb/s: 3 s at 4K60 is
+    about 24 MB and still visually transparent (44 dB PSNR against the full-size encode)."""
+    if WEB:
+        return ["-c:v", "libx264", "-preset", "veryfast", "-b:v", "60M", "-maxrate", "60M", "-bufsize", "60M"]
     vt = ["-c:v", "h264_videotoolbox", "-q:v", "80"]
     ok = subprocess.run([ff, "-v", "error", "-f", "lavfi", "-i", "color=s=640x360:d=0.2", *vt, "-f", "null", "-"],
                         capture_output=True).returncode == 0

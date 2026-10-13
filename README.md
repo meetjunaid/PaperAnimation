@@ -13,7 +13,7 @@ Reel and YouTube versions, rendered at once.
 [![Windows](https://img.shields.io/badge/Windows-✓-222?style=flat-square&logo=windows)](#-requirements)
 [![Linux](https://img.shields.io/badge/Linux-✓-222?style=flat-square&logo=linux&logoColor=white)](#-requirements)
 [![Agent Skill](https://img.shields.io/badge/Agent%20Skills-open%20standard-5a67d8?style=flat-square)](https://agentskills.io)
-[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757?style=flat-square)](#-install)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757?style=flat-square)](#-in-claude-code)
 [![MIT](https://img.shields.io/badge/license-MIT-2ea44f?style=flat-square)](LICENSE)
 
 <img src="media/demo-youtube.gif" alt="Demo: the phrase 'Your Text Here' highlighted on 23 flipping newspaper, magazine and web pages" width="640">
@@ -21,6 +21,18 @@ Reel and YouTube versions, rendered at once.
 <img src="media/demo-reel.gif" alt="The same animation in vertical reel format" width="180">
 
 <sub>A downsized, silent preview. **[🔊 Watch it with the projector sound](media/demo-with-sound.mp4)**</sub>
+
+<br>
+
+## ⬇️ Get it in 2 minutes. No GitHub needed.
+
+[![Download the skill](https://img.shields.io/badge/⬇%20%20Download%20the%20skill-ZIP%20·%203%20MB-f5d547?style=for-the-badge)](https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip)
+
+**Then pick where you use AI:**
+
+[![Claude.ai](https://img.shields.io/badge/Claude.ai-web%20%26%20desktop%20app-d97757?style=for-the-badge)](#-on-claudeai)
+[![ChatGPT](https://img.shields.io/badge/ChatGPT-web%20%26%20app-10a37f?style=for-the-badge)](#-on-chatgpt)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-terminal-222?style=for-the-badge)](#-in-claude-code)
 
 </div>
 
@@ -39,12 +51,29 @@ Reel and YouTube versions, rendered at once.
 No templates to buy, no After Effects, no keyframes. Every page is drawn from scratch:
 newsprint fibres, creases, ink bleed, marker streaks and film grain.
 
-## 📦 Install
+## 💬 On Claude.ai
 
-<details open>
-<summary><b>Claude Code (recommended)</b></summary>
+Works on every plan, including Free, in the browser and the desktop app.
 
-<br>
+1. **[Download the skill](https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip)**. Keep it as a ZIP; don't unzip it.
+2. In Claude, open **Settings → Capabilities** and turn on **Code execution and file creation**.
+3. Open **Customize → Skills**, click **+**, then **Create skill → Upload a skill**, and choose the ZIP.
+4. Start a new chat and type: **make the newspaper highlight video**
+
+Claude asks for your word and whether you want sound, then hands you both 4K videos to download.
+
+> [!NOTE]
+> On Team and Enterprise plans, an admin may need to allow skills and code execution first.
+
+## 💬 On ChatGPT
+
+Skills are in beta on ChatGPT, so menus can move around and availability depends on your plan.
+
+1. **[Download the skill](https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip)**. Keep it as a ZIP.
+2. In ChatGPT, open **Skills**, click **Create**, then **Upload from your computer**, and choose the ZIP.
+3. In a new chat, type **@newspaper-highlight-animation** or just ask for **the newspaper highlight video**.
+
+## 💻 In Claude Code
 
 ```text
 /plugin marketplace add meetjunaid/newspaper-highlight-animation
@@ -53,10 +82,8 @@ newsprint fibres, creases, ink bleed, marker streaks and film grain.
 
 Update later with `claude plugin update newspaper-highlight-animation@newspaper-highlight-animation`.
 
-</details>
-
 <details>
-<summary><b>Codex, Cursor and other agents</b></summary>
+<summary><b>Codex, Cursor and other coding agents</b></summary>
 
 <br>
 
@@ -70,19 +97,7 @@ or, with the GitHub CLI (v2.90+):
 gh skill install meetjunaid/newspaper-highlight-animation newspaper-highlight-animation
 ```
 
-</details>
-
-<details>
-<summary><b>Manual</b></summary>
-
-<br>
-
-```sh
-git clone https://github.com/meetjunaid/newspaper-highlight-animation
-cp -R newspaper-highlight-animation/skills/newspaper-highlight-animation ~/.claude/skills/
-```
-
-The skill is just the `skills/newspaper-highlight-animation/` folder. Put it wherever your agent looks for skills.
+Or unzip the [ZIP](https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip) into the folder where your agent looks for skills.
 
 </details>
 
@@ -95,8 +110,8 @@ Ask your agent for it in plain words:
 ```
 
 It asks you two quick questions, **what word to highlight** and **whether you want the
-projector sound** (yes or no), then renders both videos into
-`~/Downloads/newspaper-highlight-animation/`.
+projector sound** (yes or no), then renders both videos. On your computer they land in
+`~/Downloads/newspaper-highlight-animation/`; on Claude.ai and ChatGPT you download them from the chat.
 
 <details>
 <summary><b>Prefer the terminal?</b></summary>
@@ -115,12 +130,23 @@ On Windows, use `py` instead of `python3`.
 
 | | |
 | --- | --- |
-| 🐍 **Python 3.12+** | From [python.org](https://www.python.org/downloads/), or `brew install python` on a Mac |
+| 🌐 **On Claude.ai or ChatGPT** | Nothing. It runs in the chat's own sandbox |
+| 🐍 **On your computer: Python 3.11+** | From [python.org](https://www.python.org/downloads/), or `brew install python` on a Mac |
 | 💾 **About 250 MB** | Installed automatically, once, on the first run |
-| ⏱️ **Render time** | About 2 minutes on Apple Silicon (hardware encoder), about 5–10 minutes on Windows and Linux |
+| ⏱️ **Render time** | About 2 minutes on Apple Silicon (hardware encoder), about 5–10 minutes elsewhere |
 | 🐧 **Minimal Linux only** | Desktop Linux is ready to go. Servers and containers need `sudo apt install libegl1 libgl1`, and the skill tells you if so |
 
 ## 💌 FAQ
+
+<details>
+<summary><b>Is it really 4K on Claude.ai and ChatGPT?</b></summary>
+
+<br>
+
+Yes, 4K at 60 fps. Web chats cap downloads at 30 MB per file, so there each video is
+encoded at about 25 MB instead of about 75 MB. Side by side at 100% zoom, you can't tell them apart.
+
+</details>
 
 <details>
 <summary><b>Will it look the same on Windows and Linux?</b></summary>

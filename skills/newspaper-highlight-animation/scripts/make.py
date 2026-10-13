@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
-"""usage: python3 make.py "<phrase>" [out_dir] [--sound]
+"""usage: python3 make.py "<phrase>" [out_dir] [--sound] [--web] [--only reel|youtube]
 
 Renders the 3.0 s newspaper highlight animation in 4K at 60 fps, reel and
-YouTube orientations in parallel, then checks both files. --sound adds the
-projector rattle. Works on macOS, Windows and Linux with Python 3.12+.
+YouTube orientations, then checks the files. Works on macOS, Windows and Linux
+with Python 3.11+.
+
+  --sound         add the projector rattle
+  --web           for hosted sandboxes (Claude.ai, ChatGPT): each file stays
+                  under 30 MB, and the videos render one after the other
+  --only NAME     render just the reel or just the youtube version
 """
 import hashlib
+import importlib.util
 import os
 import re
 import shutil
@@ -16,34 +22,59 @@ import venv
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+PIP = ["-m", "pip", "install", "-q", "--disable-pip-version-check"]
 
 
-def ensure_python_312():
+def ensure_python_311():
     """Re-run under a newer Python if this one is too old (macOS's built-in python3 is 3.9)."""
-    if sys.version_info >= (3, 12):
+    if sys.version_info >= (3, 11):
         return
-    for cmd in (["python3.14"], ["python3.13"], ["python3.12"], ["py", "-3.14"], ["py", "-3.13"], ["py", "-3.12"]):
+    for cmd in (["python3.14"], ["python3.13"], ["python3.12"], ["python3.11"], ["py", "-3.14"], ["py", "-3.13"], ["py", "-3.12"]):
         if shutil.which(cmd[0]):
-            ok = subprocess.run(cmd + ["-c", "import sys; sys.exit(sys.version_info < (3, 12))"], capture_output=True)
+            ok = subprocess.run(cmd + ["-c", "import sys; sys.exit(sys.version_info < (3, 11))"], capture_output=True)
             if ok.returncode == 0:
                 sys.exit(subprocess.run(cmd + [str(Path(__file__).resolve())] + sys.argv[1:]).returncode)
-    sys.exit("error: needs Python 3.12 or newer, from https://www.python.org/downloads/ (or `brew install python`)")
+    sys.exit("error: needs Python 3.11 or newer, from https://www.python.org/downloads/ (or `brew install python`)")
 
 
 def env_python():
     """One shared environment per pinned dependency set, outside the skill folder so plugin
-    updates don't wipe it."""
+    updates don't wipe it. Where a virtual environment can't be made (some hosted sandboxes),
+    install into the current Python instead."""
     req = HERE / "requirements.txt"
     base = Path(os.environ.get("LOCALAPPDATA") or os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache")
     env_dir = base / "newspaper-highlight-animation" / ("venv-" + hashlib.sha1(req.read_bytes()).hexdigest()[:8])
     py = env_dir / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
-    if not py.exists():
-        print(f"first run: installing dependencies into {env_dir} (about 250 MB, once)", file=sys.stderr)
+    if py.exists():
+        return str(py)
+    print("first run: installing dependencies (about 250 MB, once)", file=sys.stderr)
+    try:
+        if importlib.util.find_spec("ensurepip") is None:  # Debian/Ubuntu without python3-venv
+            raise RuntimeError
         venv.create(env_dir, with_pip=True)
-        if subprocess.run([str(py), "-m", "pip", "install", "-q", "--disable-pip-version-check", "-r", str(req)]).returncode:
-            shutil.rmtree(env_dir, ignore_errors=True)
-            sys.exit("error: installing dependencies failed")
-    return str(py)
+        if subprocess.run([str(py)] + PIP + ["-r", str(req)]).returncode == 0:
+            return str(py)
+    except (Exception, SystemExit):  # some patched venv modules exit instead of raising
+        print("no virtual environment available; installing into this Python instead", file=sys.stderr)
+    shutil.rmtree(env_dir, ignore_errors=True)
+    for extra in ([], ["--user"], ["--break-system-packages"]):
+        r = subprocess.run([sys.executable] + PIP + extra + ["-r", str(req)], capture_output=True, text=True)
+        if r.returncode == 0:
+            return sys.executable
+    sys.exit("error: installing dependencies failed\n" + r.stderr[-2000:])
+
+
+def check_imports(py):
+    """Linux desktops ship the GL libraries Skia links against; minimal installs and sandboxes may not."""
+    r = subprocess.run([py, "-c", "import skia, cv2, numpy, imageio_ffmpeg"], capture_output=True, text=True)
+    if r.returncode:
+        hint = ""
+        if "libEGL" in r.stderr or "libGL" in r.stderr:
+            hint = ("\nInstall the system graphics libraries, then run again:\n"
+                    "  Debian/Ubuntu:  sudo apt install libegl1 libgl1\n"
+                    "  Fedora:         sudo dnf install mesa-libEGL mesa-libGL\n"
+                    "  Arch:           sudo pacman -S libglvnd")
+        sys.exit("error: " + r.stderr.strip().splitlines()[-1] + hint)
 
 
 def total_ram_gb():
@@ -62,23 +93,18 @@ def total_ram_gb():
         return 0.0
 
 
-def check_imports(py):
-    """Linux desktops ship the GL libraries Skia links against; minimal installs and containers may not."""
-    r = subprocess.run([py, "-c", "import skia"], capture_output=True, text=True)
-    if r.returncode:
-        hint = ""
-        if "libEGL" in r.stderr or "libGL" in r.stderr:
-            hint = ("\nInstall the system graphics libraries, then run again:\n"
-                    "  Debian/Ubuntu:  sudo apt install libegl1 libgl1\n"
-                    "  Fedora:         sudo dnf install mesa-libEGL mesa-libGL\n"
-                    "  Arch:           sudo pacman -S libglvnd")
-        sys.exit("error: " + r.stderr.strip().splitlines()[-1] + hint)
-
-
 def main():
-    ensure_python_312()
-    sound = "--sound" in sys.argv[1:]
-    args = [a for a in sys.argv[1:] if a != "--sound"]
+    ensure_python_311()
+    argv = sys.argv[1:]
+    sound, web = "--sound" in argv, "--web" in argv
+    only = None
+    if "--only" in argv:
+        i = argv.index("--only")
+        only = argv[i + 1] if i + 1 < len(argv) else ""
+        del argv[i:i + 2]
+        if only not in ("reel", "youtube"):
+            sys.exit("error: --only takes reel or youtube")
+    args = [a for a in argv if a not in ("--sound", "--web")]
     if not args or not args[0].strip():
         sys.exit(__doc__)
     phrase = args[0]
@@ -88,13 +114,13 @@ def main():
 
     slug = re.sub(r"[^a-z0-9]+", "-", phrase.lower()).strip("-") or "phrase"
     out.mkdir(parents=True, exist_ok=True)
-    jobs = [("reel", 2160, 3840), ("youtube", 3840, 2160)]
+    jobs = [j for j in [("reel", 2160, 3840), ("youtube", 3840, 2160)] if only in (None, j[0])]
     files = {name: out / f"{slug}_{name}_{w}x{h}_60fps.mp4" for name, w, h in jobs}
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")  # keep the skill folder clean
-    cmds = [[py, str(HERE / "render.py"), phrase, str(w), str(h), "60", str(files[name])] + (["--sound"] if sound else [])
-            for name, w, h in jobs]
+    cmds = [[py, str(HERE / "render.py"), phrase, str(w), str(h), "60", str(files[name])]
+            + (["--sound"] if sound else []) + (["--web"] if web else []) for name, w, h in jobs]
     # Each 4K render peaks around 2 GB, so render both at once only when there is room for it.
-    if total_ram_gb() >= 8:
+    if len(cmds) > 1 and not web and total_ram_gb() >= 8:
         procs = [subprocess.Popen(c, env=env, stdout=subprocess.DEVNULL) for c in cmds]
         failed = any([p.wait() for p in procs])
     else:

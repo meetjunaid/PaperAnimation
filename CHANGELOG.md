@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 — 2026-10-14
+
+- Works on **Claude.ai** and **ChatGPT**: the skill runs in the chat's own sandbox and hands you both videos to download.
+- New `--web` mode: still 4K 60 fps, but each file stays around 25 MB, under the web apps' 30 MB download limit, with no visible difference.
+- New `--only reel|youtube`: render one orientation per command, to stay within a sandbox's time limit.
+- Runs on Python 3.11+, and installs into the system Python where a virtual environment isn't available.
+- Every release now carries an upload-ready ZIP, linked from a one-click download button in the README.
+
 ## 1.0.0 — 2026-10-14
 
 First public release.

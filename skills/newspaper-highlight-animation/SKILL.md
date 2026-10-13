@@ -2,9 +2,9 @@
 name: newspaper-highlight-animation
 description: Make a 3-second "newspaper highlight" hook video, a stop-motion flip through 23 newspaper, magazine and web-article pages where one word or phrase is highlighted in yellow marker and pinned to the centre of the frame. Renders 4K 60 fps in both vertical reel (2160x3840) and YouTube landscape (3840x2160) at once, with an optional projector sound. Use when the user asks for a newspaper highlight video, paper animation hook, highlighted-word intro, news-clipping montage, or "the highlight video for <phrase>".
 license: MIT
-compatibility: macOS, Windows or Linux with Python 3.12+. The first run installs about 250 MB of Python packages. Minimal Linux installs also need the system GL libraries (libegl1, libgl1).
+compatibility: macOS, Windows or Linux with Python 3.11+, including the Claude.ai and ChatGPT code sandboxes. The first run installs about 250 MB of Python packages. Minimal Linux installs also need the system GL libraries (libegl1, libgl1).
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Newspaper highlight animation
@@ -46,8 +46,29 @@ Add `--sound` only if the user answered Yes.
 - It writes `<slug>_reel_2160x3840_60fps.mp4` and
   `<slug>_youtube_3840x2160_60fps.mp4`.
 - The first run creates a Python environment in the user's cache folder. If it
-  says Python 3.12+ is missing, or prints commands to install system graphics
+  says Python 3.11+ is missing, or prints commands to install system graphics
   libraries (minimal Linux installs), pass that on to the user.
+
+### In a hosted sandbox (Claude.ai, ChatGPT and similar)
+
+If you are running in a web app's code sandbox rather than on the user's own
+computer, render each orientation as its own command, so each one finishes
+within the sandbox's time limit, and add `--web`:
+
+```sh
+python3 "<this skill's directory>/scripts/make.py" "<phrase>" <outputs folder> --web --only reel [--sound]
+python3 "<this skill's directory>/scripts/make.py" "<phrase>" <outputs folder> --web --only youtube [--sound]
+```
+
+- `--web` still renders 4K at 60 fps but keeps each file at about 25 MB, under
+  the web apps' 30 MB download limit. It looks the same as the full-size file.
+- Use the folder your platform offers for downloads (for example
+  `/mnt/user-data/outputs` on Claude.ai or `/mnt/data` on ChatGPT), then give the
+  user both files to download.
+- Each command takes about 2–4 minutes. The first one also installs the
+  dependencies.
+- If it prints commands to install the system graphics libraries and you can
+  run `apt-get` (with `sudo` if needed), install them and run it again.
 
 ## 3. Verify before reporting
 
