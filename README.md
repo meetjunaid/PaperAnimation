@@ -20,7 +20,7 @@ Reel and YouTube versions, rendered at once.
 &nbsp;
 <img src="media/demo-reel.gif" alt="The same animation in vertical reel format" width="180">
 
-<sub>A downsized, silent preview. **[🔊 Watch it with the projector sound](media/demo-with-sound.mp4)**</sub>
+<sub>A downsized, silent preview. **[🔊 Watch it with the sound](media/demo-with-sound.mp4)**</sub>
 
 <br>
 
