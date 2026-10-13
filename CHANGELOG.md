@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.3 — 2026-10-14
+
+- The phrase question is back in the chat. Only the sound question uses the pop-up, now worded "Do you want sound effects in your video?" with **Yes (Recommended)** first.
+- A bigger, animated download button in the README.
+
 ## 1.1.2 — 2026-10-14
 
 - Both questions now open in one pop-up: type your phrase (or pick a sample), choose the sound, press send. A short summary of the steps appears first.

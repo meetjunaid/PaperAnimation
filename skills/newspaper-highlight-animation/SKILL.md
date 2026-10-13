@@ -4,7 +4,7 @@ description: Make a 3-second "newspaper highlight" hook video, a stop-motion fli
 license: MIT
 compatibility: macOS, Windows or Linux with Python 3.11+, including the Claude.ai and ChatGPT code sandboxes. The first run installs about 250 MB of Python packages. Minimal Linux installs also need the system GL libraries (libegl1, libgl1).
 metadata:
-  version: "1.1.2"
+  version: "1.1.3"
 ---
 
 # Newspaper highlight animation
@@ -12,34 +12,19 @@ metadata:
 A locked, reusable design. Do NOT redesign it, restyle it or add motion. Only the
 highlighted phrase changes.
 
-## 1. Ask two questions in one pop-up
+## 1. Ask two questions, one at a time
 
-First, show this short summary in the chat, then open the pop-up straight away:
-
-> Here's how it works:
-> 1. **Type your word or phrase** in the pop-up below.
-> 2. **Choose whether you want the projector sound.**
-> 3. I render your 4K 60 fps videos, reel and YouTube.
-
-Then ask both questions in **one** call to your structured question tool (in
-Claude Code, AskUserQuestion; in Claude.ai, its multiple-choice question
-widget), so they appear together in the pop-up, in this order:
-
-1. **"What word or phrase should be highlighted? Type it in the text box, or pick a sample."**
-   - Header: `Phrase`
-   - Options: `Your Text Here` and `Breaking News` (samples only). The
-     user types their own phrase in the pop-up's free-text field ("Other").
-2. **"Do you want the projector sound?"**
-   - Header: `Sound`
-   - **Yes**: a fast mechanical projector rattle under the whole video
+1. Ask: **"What word or phrase should be highlighted?"** Wait for the answer. Use
+   the user's exact spelling and capitalisation. Ask even if you think you know it.
+2. Then ask: **"Do you want sound effects in your video?"** as a multiple-choice question
+   with two options, using your structured question tool if you have one (in
+   Claude Code, AskUserQuestion):
+   - **Yes (Recommended)**: a fast mechanical projector rattle under the whole video
    - **No**: silent, so they can add their own music
 
-Use the typed phrase exactly as entered, with the same spelling and
-capitalisation. Use a sample only if the user picked it. Render as soon as both
-answers arrive. Don't ask for the phrase as a plain chat message first.
+   Without such a tool, ask the same question and accept yes or no.
 
-Without a structured question tool, ask the phrase in chat, then ask yes or no
-for the sound.
+Render only after both answers.
 
 ## 2. Render
 

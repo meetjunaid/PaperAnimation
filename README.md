@@ -26,7 +26,9 @@ Reel and YouTube versions, rendered at once.
 
 ## ⬇️ Get it in 2 minutes. No GitHub needed.
 
-[![Download the skill](https://img.shields.io/badge/⬇%20%20Download%20the%20skill-ZIP%20·%203%20MB-f5d547?style=for-the-badge)](https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip)
+<a href="https://github.com/meetjunaid/newspaper-highlight-animation/releases/latest/download/newspaper-highlight-animation.zip"><img src="media/download-button.svg" width="440" alt="Download the skill: free 3 MB ZIP for Claude and ChatGPT"></a>
+
+<sub>One click, and the ZIP lands in your Downloads folder. Keep it zipped.</sub>
 
 **Then pick where you use AI:**
 
@@ -109,8 +111,8 @@ Ask your agent for it in plain words:
 > make the newspaper highlight video
 ```
 
-A pop-up asks you two quick questions: **type the word to highlight**, then **sound or no sound**. Press send
-and it renders both videos. On your computer they land in
+It asks you two quick questions, **what word to highlight** and **whether you want sound effects**
+(yes or no), then renders both videos. On your computer they land in
 `~/Downloads/newspaper-highlight-animation/`; on Claude.ai and ChatGPT you download them from the chat.
 
 <details>
