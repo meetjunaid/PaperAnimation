@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2 — 2026-10-14
+
+- Both questions now open in one pop-up: type your phrase (or pick a sample), choose the sound, press send. A short summary of the steps appears first.
+
 ## 1.1.1 — 2026-10-14
 
 - Fix: Claude.ai rejected the upload because the skill description contained `<phrase>`, which it reads as an XML tag.

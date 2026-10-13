@@ -109,8 +109,8 @@ Ask your agent for it in plain words:
 > make the newspaper highlight video
 ```
 
-It asks you two quick questions, **what word to highlight** and **whether you want the
-projector sound** (yes or no), then renders both videos. On your computer they land in
+A pop-up asks you two quick questions: **type the word to highlight**, then **sound or no sound**. Press send
+and it renders both videos. On your computer they land in
 `~/Downloads/newspaper-highlight-animation/`; on Claude.ai and ChatGPT you download them from the chat.
 
 <details>
