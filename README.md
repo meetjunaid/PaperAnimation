@@ -193,7 +193,7 @@ fictional news). The full design spec is in
 
 ## 📜 License
 
-PaperAnimation is an independent open-source project. It is neither affiliated with, nor endorsed by, any paid/free paperanimation sites.
+PaperAnimation is an independent open-source project. It is neither affiliated with, nor endorsed by, any paid/free paperanimation sites. It is 100% free and going to stay this way eternally.
 
 [MIT](LICENSE) © 2026 Junaid Ahmed. Bundled fonts are under the SIL Open Font License; see
 [`assets/fonts`](skills/paper-animation/assets/fonts/).
